@@ -28,24 +28,64 @@ class MyAppState extends ChangeNotifier {
     current = WordPair.random();
     notifyListeners();
   }
+
+  var favorites = <WordPair>[];
+
+  void toggleFavorite() {
+    if (favorites.contains(current)) {
+      favorites.remove(current);
+    } else {
+      favorites.add(current);
+    }
+    notifyListeners();
+  }
+
 }
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
-    var pair = appState.current; // Add this line.        
+    var pair = appState.current;   
+
+    //ADD THIS
+    IconData icon;
+    if (appState.favorites.contains(pair)) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+
     return Scaffold(
-      body: Column(
-        children: [
-          Text('An Antonio idea:'),
-          BigCard(pair: pair), // Changed this line
-           ElevatedButton(
-            onPressed: () {
-              appState.getNext();
-            },
-            child: Text('Next'),
-          ),  
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,  
+          children: [
+            BigCard(pair: pair), 
+            SizedBox(height: 10),
+             Row(
+               mainAxisSize: MainAxisSize.min, 
+               children: [
+                 // ↓ And this.
+                 ElevatedButton.icon(
+                  onPressed: () {
+                    appState.toggleFavorite();
+                  },
+                  icon: Icon(icon),
+                  label: Text('Like'),
+                 ),
+                  
+                 SizedBox(width: 10),
+
+                 ElevatedButton(
+                  onPressed: () {
+                    appState.getNext();
+                  },
+                  child: Text('Next'),
+                             ),
+               ],
+             ),  
+          ],
+        ),
       ),
     );
   }
@@ -70,8 +110,12 @@ class BigCard extends StatelessWidget {
       color: theme.colorScheme.primary, 
       child: Padding(
         padding: const EdgeInsets.all(20.0),
-        // ↓ Change this line.
-        child: Text(pair.asLowerCase, style: style),
+        // ↓ Make the following change.
+        child: Text(
+          pair.asLowerCase,
+          style: style,
+          semanticsLabel: "${pair.first} ${pair.second}",
+        ),
       ),
     );
   }
