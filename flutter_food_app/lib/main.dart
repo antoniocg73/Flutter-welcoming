@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    Widget page = selectedIndex == 0 ? MealsPage() : FavoritesPage();
+    Widget page = selectedIndex == 0 ? MealsPage() : FavoritesPage(); // MealsPage 0, FavoritesPage 1
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
