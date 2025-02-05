@@ -137,18 +137,7 @@ class _MealsPageState extends State<MealsPage> {
                   itemCount: mealProvider.meals.length,
                   itemBuilder: (context, index) {
                     var meal = mealProvider.meals[index];
-                    return Card(
-                      color: Colors.white,
-                      margin: EdgeInsets.all(8.0),
-                      child: ListTile(
-                        leading: Image.network(meal['image']!),
-                        title: Text(meal['name']!),
-                        trailing: IconButton(
-                          icon: Icon(mealProvider.favorites.contains(meal) ? Icons.favorite : Icons.favorite_border),
-                          onPressed: () => mealProvider.toggleFavorite(meal),
-                        ),
-                      ),
-                    );
+                    return MealItem(meal: meal);
                   },
                 ),
         ),
@@ -156,6 +145,31 @@ class _MealsPageState extends State<MealsPage> {
     );
   }
 }
+
+class MealItem extends StatelessWidget {
+  final Map<String, dynamic> meal;
+  
+  MealItem({required this.meal});
+
+  @override
+  Widget build(BuildContext context) {
+    var mealProvider = context.watch<MealProvider>();
+    
+    return Card(
+      color: Colors.white,
+      margin: EdgeInsets.all(8.0),
+      child: ListTile(
+        leading: Image.network(meal['image']!),
+        title: Text(meal['name']!),
+        trailing: IconButton(
+          icon: Icon(mealProvider.favorites.contains(meal) ? Icons.favorite : Icons.favorite_border),
+          onPressed: () => mealProvider.toggleFavorite(meal),
+        ),
+      ),
+    );
+  }
+}
+
 
 class FavoritesPage extends StatelessWidget {
   @override
