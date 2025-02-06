@@ -22,7 +22,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-          flutter-version-file: pubspec.yaml
+          flutter-version-file: flutter_food_app/pubspec.yaml
 
       - name: Enable Flutter Web
         run: flutter config --enable-web
