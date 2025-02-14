@@ -7,7 +7,7 @@ Here's the result of the web page:
 ![result](./.assets/web_result.png)
 
 ## Getting Started 
-To get started, you need to have Flutter and VsCode installed on your machine. If you don't have it, you can follow the instructions on the [official website](https://flutter.dev/docs/get-started/install).
+To get started, you need to have Flutter and Visual Studio Code installed on your machine. If you don't have it, you can follow the instructions on the [official website](https://flutter.dev/docs/get-started/install).
 
 
 ## Running the project 
