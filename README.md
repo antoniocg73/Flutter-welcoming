@@ -32,7 +32,7 @@ This command will generate a folder called `build/web` with the files needed to 
 
 ## Main file
 
-The main file is located at `lib/main.dart`. This file contains the main structure of the project and the routes used to navigate between pages.
+The main file is located at `lib/main.dart`. This file contains the main structure of the project and the routes used to navigate between pages. 
 
 ## Tutorial
 
